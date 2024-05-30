@@ -1,0 +1,20 @@
+services:
+
+# Suricata service
+  suricata:
+    build: .
+    container_name: suricata
+    restart: always
+    environment:
+    # For ET Pro ruleset replace "OPEN" with your OINKCODE
+    # - OINKCODE=6688943995076420
+    # Loading externel Rules from URL 
+    # - FROMURL="https://username:password@yoururl.com|https://username:password@otherurl.com"
+    network_mode: "host"
+    cap_add:
+     - NET_ADMIN
+     - SYS_NICE
+     - NET_RAW
+    image: "4ss078/suricata"
+    volumes:
+     - /data/suricata/log:/var/log/suricata
